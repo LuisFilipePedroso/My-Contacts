@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import NewUser from './NewUser'
+import ContactsList from './ContactsList'
 
 class App extends Component {
-  state = {
-    name: ''
-  }
-  
   render() {
     return (
       <div className="App">
         <NewUser />
+        <ContactsList />
       </div>
     );
   }

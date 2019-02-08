@@ -1,4 +1,4 @@
-const generateId = () => {
+export const generateId = () => {
     return Math.random().toString(20).substring(2) + (new Date()).getTime().toString(20);
 }
 
