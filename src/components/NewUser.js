@@ -5,32 +5,55 @@ import { generateId } from '../utils/helpers'
 
 function NewUser(props) {
     const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
 
-    const handleInputChange = (e) => {
+    const handleNameChange = (e) => {
         const { value: name } = e.target
         setName(name)
     }
 
-    const addUser = () => {
-      const { dispatch } = props
-  
-      const contact = {
-        id: generateId(),
-        name: name
-      }
-      dispatch(addContact(contact))
-      setName(() => '')
+    const handleEmailChange = (e) => {
+        const { value: email } = e.target
+        setEmail(email)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const { dispatch } = props
+
+        const contact = {
+            id: generateId(),
+            name,
+            email
+        }
+        dispatch(addContact(contact))
+        setName('')
+        setEmail('')
     }
 
     return (
         <div>
-            <input
-                type="text"
-                name="name"
-                required
-                onChange={handleInputChange}
-                value={name} />
-            <button onClick={addUser}>Save</button>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="name"
+                    required
+                    onChange={handleNameChange}
+                    value={name}
+                    placeholder="Name"
+                    className="input" />
+                <input
+                    type="email"
+                    name="email"
+                    required
+                    onChange={handleEmailChange}
+                    value={email}
+                    placeholder="Email"
+                    className="input" />
+                <button 
+                    type="submit"
+                    className="btn btn-success">Save</button>
+            </form>
         </div>
     );
 }

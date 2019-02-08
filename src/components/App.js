@@ -4,10 +4,24 @@ import NewUser from './NewUser'
 import ContactsList from './ContactsList'
 
 class App extends Component {
+  state = {
+    isOpen: true
+  }
+
+  handleButtonClick = () => {
+    this.setState((prevState) => ({
+      isOpen: !prevState.isOpen
+    }))
+  }
+
   render() {
     return (
       <div className="App">
-        <NewUser />
+        <button className="btn btn-success" onClick={this.handleButtonClick}>New User</button>
+        {this.state.isOpen === true &&
+          <NewUser />
+        }
+        <h3 className="d-flex justify-content-center title">My Contacts</h3>
         <ContactsList />
       </div>
     );
